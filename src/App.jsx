@@ -109,35 +109,47 @@ export default function CreatorPartnershipHub() {
           max_tokens: 1000,
           messages: [{
             role: "user",
-            content: `Analyze this TikTok script and suggest 3 brand partners.
+            content: `Analyze this TikTok script and suggest 3 brand partners I could pitch for sponsorship.
 
 SCRIPT:
 ${script}
 
-For each brand, write an outreach message that:
-1. Opens with a specific hook about MY video (reference actual content from the script)
-2. Names 2 CREATIVE video ideas that are NOVEL and SPECIFIC to both my content style AND their brand
-   - Don't use generic ideas like "honest review" or "day in my life"
-   - Think: unique angles, unexpected formats, trending concepts
-   - Ideas should only make sense for THIS brand + THIS script topic
-3. Keeps it under 70 words, casual tone
+CAPTION STYLE (match this exactly):
+- Start with "here's what we can learn from..." or similar hook
+- Use → and ≠ and = symbols
+- Short punchy lines with dashes (–)
+- Tag relevant brands/people with @
+- Focus on lessons/takeaways from the story
+- No hashtags in caption, keep those separate
 
-Example of BAD generic ideas: "honest review", "day in my life featuring your product", "tutorial"
-Example of GOOD novel ideas: "POV: your product solves the exact problem I ranted about", "blindfolded guess test with friends", "what I'd grab in a 60-second shopping spree"
+Example caption style:
+"here's what we can learn from how @sarablakely built @spanx:
+– constraints → creativity: no fashion background forced her to simplify
+– control = compounding: keeping 100% ownership gave her leverage
+– lived experience > market research: she built products by wearing them"
+
+OUTREACH MESSAGES:
+These are cold pitches to brands for SPONSORSHIP. I want them to pay me to feature their product in my content.
+
+For each brand:
+1. Open with what my content is about (founder stories, business breakdowns)
+2. Explain why MY AUDIENCE (aspiring entrepreneurs, startup fans) would love their brand
+3. Propose 2 specific SPONSORED VIDEO ideas featuring their product
+4. Keep it under 70 words, casual but professional
 
 Return ONLY valid JSON:
 {
-  "caption": "casual 1-2 sentence caption for the TikTok",
+  "caption": "caption in the style above with – and → symbols",
   "hashtags": ["#tag1", "#tag2", "#tag3", "#tag4", "#tag5"],
   "companies": [
     {
       "name": "Company Name",
-      "why": "Why they fit this specific content",
+      "why": "Why they'd sponsor this type of content",
       "linkedin": "https://linkedin.com/company/x or null",
       "twitter": "@handle or null",
       "instagram": "@handle or null",
       "email": "email or null",
-      "message": "Structured message: hook about my video → 2 creative specific ideas → soft CTA"
+      "message": "Sponsorship pitch: what my content is about → why my audience fits their brand → 2 sponsored video ideas"
     }
   ]
 }`
@@ -182,53 +194,56 @@ Return ONLY valid JSON:
       
       // Fallback with mock data for testing
       const mockData = {
-        caption: "Tried this for a week and here's what actually happened",
-        hashtags: ["#tiktokmademebuyit", "#honestreviews", "#fyp", "#beautytok", "#skincare"],
+        caption: "here's what we can learn from how @emilyweiss built @glossier:\n– side project → empire: 4am blog posts before work turned into 10M monthly readers\n– community > celebrity: built entirely on customer feedback, not endorsements\n– rejection = redirection: 11 VCs said no before Forerunner said yes\n– skin first, makeup second: a philosophy that flipped the entire industry",
+        hashtags: ["#glossier", "#founderstory", "#startuptok", "#businesstiktok", "#emilyweiss"],
         companies: [
           {
-            name: "Glossier",
-            why: "Your skincare frustration aligns with their 'skin first' messaging",
-            linkedin: "https://linkedin.com/company/glossier",
-            twitter: "@glossier",
-            instagram: "@glossier",
-            email: "partnerships@glossier.com",
-            message: `Hey — just posted about my 2-week skincare meltdown and the comments are blowing up with people asking what finally worked.
+            name: "Notion",
+            why: "Your audience of aspiring founders uses Notion to build their businesses",
+            linkedin: "https://linkedin.com/company/notion",
+            twitter: "@notionhq",
+            instagram: "@notionhq",
+            email: "partnerships@notion.so",
+            message: `Hey Notion — I make founder breakdown content for aspiring entrepreneurs (the Glossier video is doing well).
+
+My audience obsesses over how successful founders organize their ideas. Two sponsored concepts:
+
+1. "Recreating Emily Weiss's product research system in Notion"
+2. "The Notion setup every founder needs before their first pitch"
+
+Happy to share my metrics.`
+          },
+          {
+            name: "Shopify",
+            why: "Founder stories naturally lead viewers to ask 'how do I start my own thing'",
+            linkedin: "https://linkedin.com/company/shopify",
+            twitter: "@shopify",
+            instagram: "@shopify",
+            email: "creators@shopify.com",
+            message: `Hi Shopify — I cover founder journeys and my audience is always asking how to start their own brand.
+
+Glossier's DTC story is a perfect tie-in. Ideas:
+
+1. "What Glossier's first Shopify store looked like vs now"
+2. "Building a Glossier-style brand in 24 hours with Shopify"
+
+My demos skew 18-28, entrepreneurial. Let me know if interested.`
+          },
+          {
+            name: "Masterclass",
+            why: "Viewers who love founder stories want to learn directly from them",
+            linkedin: "https://linkedin.com/company/masterclass",
+            twitter: "@masterclass",
+            instagram: "@masterclass",
+            email: "partnerships@masterclass.com",
+            message: `Hey Masterclass — my founder breakdown content gets strong engagement from people who want to learn from the best.
 
 Two ideas:
-1. "Products I almost returned but didn't" — Futuredew would be the plot twist
-2. Blindfolded texture test: drugstore vs Glossier, friends guess which is which
 
-Happy to share the engagement stats.`
-          },
-          {
-            name: "Oatly",
-            why: "Your morning routine chaos fits their irreverent brand voice",
-            linkedin: "https://linkedin.com/company/oatly",
-            twitter: "@oatly",
-            instagram: "@oatly",
-            email: "creators@oatly.com",
-            message: `Hi — my chaotic morning routine video is taking off and Oatly's already in the background of half my kitchen shots.
+1. "What I learned watching Sara Blakely's Masterclass as a creator"
+2. "Ranking founder Masterclasses by actual usefulness"
 
-Ideas:
-1. "Things in my fridge I'd save in a fire" — comedic ranking, Barista Edition makes the cut
-2. Latte art fails compilation but the coffee still tastes good (relatable > aesthetic)
-
-Audience is 18-28, mostly urban.`
-          },
-          {
-            name: "Mejuri",
-            why: "Your 'getting ready' content matches their everyday luxury positioning",
-            linkedin: "https://linkedin.com/company/mejuri",
-            twitter: "@mejuri",
-            instagram: "@mejuri",
-            email: "collaborate@mejuri.com",
-            message: `Hey — made a video about jewelry I never take off and people keep asking for links.
-
-Two concepts:
-1. "Jewelry I wear to look expensive when I'm broke" — Bold hoops, obviously
-2. 48-hour wear test: shower, sleep, gym — what survives vs tarnishes
-
-Could film this week if interested.`
+Authentic integration, not ad-read vibes. Let me know.`
           }
         ]
       };
